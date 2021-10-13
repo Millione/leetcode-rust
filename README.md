@@ -18,4 +18,9 @@ Execute `cargo run`, then you can input one of the below commands:
     </tr>
   </thead>
   <tbody>
+    <tr>
+      <td>1</td>
+      <td><a href="./src/solutions/s0001_two_sum"> two-sum</a></td>
+      <td>Easy</td>
+    </tr>
     
