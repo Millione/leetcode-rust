@@ -27,13 +27,13 @@ static PROBLEMS: OnceCell<Problems> = OnceCell::new();
 async fn main() {
     let problems = get_problems_async().await.unwrap();
     PROBLEMS.set(problems).unwrap();
-    println!("Welcome to leetcode-rust system.\n");
+    println!("\nWelcome to leetcode-rust system.");
     let content = fs::read_to_string("./src/problems/mod.rs").await.unwrap();
     #[allow(unused_mut)]
     let mut initialized_ids = get_initialized_ids(content);
     loop {
         println!(
-            "Please enter a frontend problem \"$id\", \n\
+            "\nPlease enter a frontend problem \"$id\", \n\
             or \"random\" to generate a random one, \n\
             or \"solve $id\" to move problem to solutions/ \n"
         );
@@ -64,21 +64,20 @@ async fn main() {
                 .parse()
                 .unwrap();
             deal_solving(&id).await;
-            break;
+            continue;
         } else {
             id = id_arg
                 .parse::<u32>()
                 .unwrap_or_else(|_| panic!("not a number: {}", id_arg));
             if initialized_ids.contains(&id) {
                 println!(
-                    "The problem {} you chose has been initialized in problems/",
+                    "\nThe problem {} you chose has been initialized in problems/",
                     id
                 );
                 continue;
             }
         }
         deal_problem(id).await;
-        break;
     }
 }
 
